@@ -1,0 +1,20 @@
+<?php
+	$a = 10;
+	$b = 15;
+	$count_a = [];
+	$count_b = [];
+	for($i =1,$j=1; $i<=$a,  $j<=$b; $i++, $j++){
+	  if($a%$i == 0){
+	    array_push($count_a,$i);
+	  }
+	  if($b%$j == 0){
+	    array_push($count_b,$i);
+	  }
+	}
+	
+	$count = count(array_intersect($count_b,$count_a));
+	echo $count;
+	
+	print_r($count_a);
+	print_r( $count_b);
+?>

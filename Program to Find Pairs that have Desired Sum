@@ -1,0 +1,45 @@
+//https://www.csestack.org/find-pairs-desired-sum/
+
+
+<?php
+	$array = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,-1,-2,-3,-4];
+  $n = count($array) -1;
+  $result = 4;
+  
+  $pair = array();
+  
+  for ($i=0;$i<$n;$i++){
+    pair($i);
+  }
+
+  function pair($v){
+    global $array, $n, $result,$pair;
+    for ($j=0;$j<$n;$j++){
+      $sum1 = $array[$v]+ $array[$j+1];
+      if($sum1 === $result){
+        
+        $pair_array = array(
+          $array[$v],
+          $array[$j+1],
+        );
+        array_push($pair,$pair_array);
+      }elseif($v < 0){
+        $sub1 = $array[$v] - $array[$j-1];
+        if($sub1 === $result){
+           $pair_array = array(
+          $array[$v],
+          $array[$j-1],
+        );
+        array_push($pair,$pair_array);
+        
+        }
+      }
+       
+    }
+    
+  }
+  sort($pair);
+  print_r($pair);
+
+
+?>

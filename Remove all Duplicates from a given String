@@ -1,0 +1,24 @@
+//Remove all Duplicates from a given String 
+//https://www.csestack.org/program-remove-all-duplicates-string/
+
+<?php
+	$str = 'abcdacd';
+	$count = strlen($str);
+	$i = 0;
+	$a = array();
+	
+	while($count > $i){
+	  array_push($a,$str[$i]);
+	  
+	  $i++;
+	}
+	$au = array_unique($a);
+	
+	$newString = implode('',$au);
+	echo $newString;
+	
+// 	$stringArray = explode(',',$newString);
+// 	print_r($stringArray);
+
+//$str = implode(',',array_unique(explode(',', $str)));
+?>

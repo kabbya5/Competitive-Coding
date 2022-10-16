@@ -1,0 +1,49 @@
+//Problem Statement / TASK: You are given a string and your task is to sort the string
+//according to the frequency of character and return the final string.
+
+//Input : "tree" 
+//Output : "eetr"
+//Input : "hello"
+//Output : "lleho"
+
+<?php
+	$str1 = 'tree';
+	$str2 = 'hello';
+	
+	$count_str1 = strlen($str1);
+	$count_str2 = strlen($str2);
+	
+	$str1_array = array();
+	$str2_array = array();
+	
+	for($i=0;$i<$count_str1;$i++){
+	  array_push($str1_array,$str1[$i]);
+	 
+	}
+	for($j=0;$j<$count_str2;$j++){
+	   array_push($str2_array,$str2[$j]);
+	}
+	
+	sort($str1_array);
+	sort($str2_array);
+	
+	$str1_output = implode('',$str1_array);
+	
+	echo $str1_output ."\n";
+	
+	$str2_array_unique = array_unique($str2_array);
+	$str2_comon_element = array_diff_assoc($str2_array,$str2_array_unique);
+	
+	foreach($str2_comon_element as $common){
+	  $index = array_search($common,$str2_array_unique);
+	  unset($str2_array_unique[$index]);
+	  $str2_comon_element = array_diff_assoc($str2_array,$str2_array_unique);
+	  
+	}
+	$sort_str2 = array_merge($str2_comon_element,$str2_array_unique);
+	
+	$str2out = implode('',$sort_str2);
+	
+	echo $str2out;
+	
+?>

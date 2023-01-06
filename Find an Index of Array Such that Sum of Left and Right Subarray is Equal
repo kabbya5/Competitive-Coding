@@ -20,7 +20,7 @@
 	  $commonValue;$commonIndex;
 	  if($subArray[$i] == $sumArray[$i]){
 	    $commonIndex = $i;
-	    $commonValue = $subArray[$i];
+	    $commonValue = $subArray[$i+1];
 	  }
 	}
 	

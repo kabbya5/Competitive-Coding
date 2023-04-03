@@ -1,0 +1,39 @@
+<?php
+$count = 1;
+$tem_count = 1;
+function calculate($i,$j){
+  echo $i . ' ';
+  echo $j . " "; 
+  
+  for($i;$i <=$j;$i++){
+    $GLOBALS['tem_count'] = 1;
+    calculate3n1($i);
+    if($GLOBALS['tem_count'] > $GLOBALS['count']){
+      $GLOBALS['count'] = $GLOBALS['tem_count'];
+    }
+   
+  }
+  echo $GLOBALS['count'];
+  
+}
+ function calculate3n1($n){
+    if($n==1){
+      return;
+    }elseif($n%2 == 1){
+      calculate3n1($n = 3*$n +1);
+    }else{
+      $n = $n/2;
+      calculate3n1($n);
+    }
+    
+    $GLOBALS['tem_count'] += 1;
+  }
+  calculate(1,10); 
+  echo "\n";
+  calculate(100,200);
+   echo "\n";
+  calculate(201,210);
+   echo "\n";
+  calculate(900, 1000);
+  
+?>

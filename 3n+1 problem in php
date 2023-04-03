@@ -4,6 +4,7 @@ $tem_count = 1;
 function calculate($i,$j){
   echo $i . ' ';
   echo $j . " "; 
+  $GLOBALS['count']= 1;
   
   for($i;$i <=$j;$i++){
     $GLOBALS['tem_count'] = 1;

@@ -1,0 +1,33 @@
+<?php
+  $string = "sstttrsstrrttadaabbacaanfgg";
+  
+  $count = strlen($string);
+  $string_array = [];
+  
+  for ($i=1;$i<$count;$i++){
+    if($string[$i] == $string[$i-1]){
+      $string_array += [$i => $string[$i]];
+    }elseif($string[$i] == $string[$i+1]){
+      $string_array += [$i => $string[$i]];
+    }else{
+      $string_array += [$i => $string[$i]];
+    }
+  }
+
+  $delete = [];
+
+  for($i=2;$i<count($string_array);$i++){
+    if($string_array[$i] == $string_array[$i+1]){
+      array_push($delete,$i);
+    }
+  }
+  
+  for($i =0;$i<count($delete);$i++){
+    unset($string_array[$delete[$i]]);
+  }
+  
+  echo implode('',$string_array);
+  
+  
+	
+?>

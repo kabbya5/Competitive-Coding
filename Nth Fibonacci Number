@@ -1,0 +1,36 @@
+// https://practice.geeksforgeeks.org/problems/nth-fibonacci-number1335/1
+Example 1:
+
+Input: 
+n = 2
+Output: 
+1 
+Explanation: 
+1 is the 2nd number of fibonacci series.
+Example 2:
+
+Input: 
+n = 5
+Output: 
+5
+Explanation: 
+5 is the 5th number of fibonacci series.
+
+<?php
+	$n = 5;
+	
+	$fibonacci_array = [];
+	
+	$i =0;
+	while($i <= $n){
+	  if($i < 2){
+	    $fibonacci_array[$i] = $i;
+	  }else{
+	    $new = $fibonacci_array[$i-1] + $fibonacci_array[$i-2];
+	    $fibonacci_array[$i] = $new;
+	  }
+	  $i++;
+	}
+	
+	echo $fibonacci_array[$n];
+?>

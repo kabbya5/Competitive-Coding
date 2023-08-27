@@ -1,0 +1,17 @@
+https://practice.geeksforgeeks.org/problems/reverse-a-string/1
+
+<?php
+	$string_array = [
+	    'Geeks',
+	    'for',
+	    'test',
+	    'string',
+	    'reverse',
+	 ];
+	 
+	 $string_array_length = count($string_array);
+	 
+	 for($i=0;$i<$string_array_length;$i++){
+	   echo strrev($string_array[$i]) . "\n";
+	 }
+?>

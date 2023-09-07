@@ -1,0 +1,24 @@
+https://practice.geeksforgeeks.org/problems/kth-smallest-element5635/1?page=1&sortBy=submissions
+
+
+<?php
+	$k = 3;
+	$n = 4;
+	
+	$array = [3, 9, 12, 16, 20];
+	
+	function filter($value,$k=3){
+	  if($value > $k){
+	   $value =  $value - $k;
+	  }else{
+	    $value = $value +$k;
+	  }
+	  return $value;
+	}
+	
+	$new_array = (array_map('filter',$array));
+	
+	$low = min($new_array);
+	$max = max($new_array);
+	echo $max - $low;
+?>

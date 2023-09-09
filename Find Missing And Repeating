@@ -1,0 +1,26 @@
+<?php
+	$n = 6;
+  $array = [1,3,2, 2,4,4];
+  
+  $new_array = [];
+  
+  for($i=1;$i<=$n;$i++){
+    $new_array[] = $i;
+  }
+  
+  $array_value_check = array_count_values($array);
+  ksort($array_value_check);
+  echo "All Repeated Values" . "\n";
+  foreach($array_value_check as $key => $value){
+    if($value > 1){
+      echo $key . "\n";
+    }
+    
+  }
+  
+  echo "All missing Values" . "\n";
+  foreach(array_diff($new_array, $array) as $value){
+    echo $value ."\n";
+  }
+  
+?>

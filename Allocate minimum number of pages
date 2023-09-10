@@ -1,0 +1,30 @@
+https://practice.geeksforgeeks.org/problems/allocate-minimum-number-of-pages0937/1?page=1&difficulty[]=2&sortBy=submissions
+
+<?php
+$n = 3;
+$page_array = [15,17,20];
+$student = 2;
+$max_pages = [];
+for($i=0;$i<$n-1;$i++){
+    $max_page = 0;
+    $max_page2 = 0;
+    for($j=0;$j<=$i;$j++){
+        $max_page += $page_array[$j];
+    }
+    
+    for($k=$n-1;$k>=$i+1;$k--){
+        $max_page2 += $page_array[$k];
+    }
+    
+    if($max_page > $max_page2){
+        $max_pages[] = $max_page;
+    }else{
+        $max_pages[] = $max_page2;
+    }
+    
+}
+
+sort($max_pages);
+echo $max_pages[0];
+
+?>

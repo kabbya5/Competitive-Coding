@@ -1,0 +1,31 @@
+https://practice.geeksforgeeks.org/problems/smallest-window-in-a-string-containing-all-the-characters-of-another-string-1587115621/1?page=1&difficulty[]=2&sortBy=submissions
+<?php
+$s = "automaticallyimportbank";
+$p = "yat";
+$slen = strlen($s);
+$plen = strlen($p);
+$count = 0;
+$substring= [];
+$short = [];
+for($i=0;$i<$slen;$i++){
+    $short[$i] = substr($s,$i);
+    $findex = strpos($short[$i],$p[0]);
+    $lindex = strpos($short[$i],$p[2]);
+        
+    if($findex > $lindex){
+      $substr = substr($short[$i],$lindex,$findex);
+    }else{
+        $substr = substr($short[$i],$findex,$lindex);
+    }
+        
+    $substring[$i] = $substr;
+}
+sort($substring);
+foreach($substring as $string){
+    if(str_contains($string,$p[$plen-1]) && str_contains($string,$p[0]) && str_contains($string,$p[1])){
+        echo $string;
+        break;
+    }
+}
+
+?>

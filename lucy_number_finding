@@ -1,0 +1,23 @@
+https://practice.geeksforgeeks.org/problems/lucky-numbers2911/1
+
+<?php
+$numbers = range(1,100);
+$secoundNumber = range(1,count($numbers),2);
+$n = [5,19];
+
+for($i=0;$i<count($secoundNumber);$i++){
+    if(($i+1)%3 ==0){
+       $deleteNumber[] = $secoundNumber[$i];
+    }
+}
+
+$thrdNumber = array_diff($secoundNumber,$deleteNumber);
+
+for($i=0;$i<count($n);$i++){
+    if(in_array($n[$i],$thrdNumber)){
+        echo $n[$i] .' is lucy Number' . "<br>";
+    }else{
+        echo $n[$i] .' is not lucy Number' . "<br>";
+    }
+}
+?>

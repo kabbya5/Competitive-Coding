@@ -1,0 +1,42 @@
+class Solution:
+    def perfectSum(self,arr,n,sum):
+        sumarray = []
+        sumCount = 0
+        for i in range(n):
+            if arr[i] == sum:
+                sumCount += 1
+                sumarray + [arr[i]]
+                continue
+                
+            for j in range(n):
+                x = arr[i]
+                y = arr[j]
+                temsum = x + y
+                if i == j:
+                    continue
+                else:
+                    if temsum == sum:
+                        sumarray + [x,y]
+                        sumCount += 1
+                        continue
+                for k in range(n):
+                    if j == k:
+                        continue
+                    
+                    x = arr[i]
+                    y = arr[j]
+                    z = arr[k]
+                    
+                    temsum = x + y +z
+                    
+                    if temsum == sum:
+                        sumarray + [x,y,z]
+                        sumCount += 1
+                        continue
+        print(sumarray)
+        print(sumCount)
+s1 = Solution()
+n = 6
+arr = [2, 3, 5, 6, 8, 10]
+sum = 10
+s1.perfectSum(arr,n,sum)

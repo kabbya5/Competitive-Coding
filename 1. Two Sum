@@ -1,1 +1,26 @@
 
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @param Integer $target
+     * @return Integer[]
+     */
+    function twoSum($nums, $target) {
+        $ans = [];
+        $map = [];
+
+        for($i=0;$i<count($nums); $i++){
+            $dif = $target - $nums[$i];
+            if(array_key_exists($dif,$map)){
+                $ans[0] = $map[$dif];
+                $ans[1] =  $i;
+                break;
+            }else{
+                $map[$nums[$i]] = $i;
+            }
+        }
+
+        return $ans;
+    }
+}

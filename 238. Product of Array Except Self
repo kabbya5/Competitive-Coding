@@ -1,0 +1,24 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer[]
+     */
+    function productExceptSelf($nums) {
+        $prifixProduct = [];
+        $prifixProduct[0] = 1;
+        
+        for($i=1;$i<count($nums);$i++){
+            $prifixProduct[$i] = $prifixProduct[$i-1] * $nums [$i-1];
+        }
+        $suffixProduct = 1;
+        for($i = count($nums) -1;$i >= 0;$i--){
+            $prifixProduct[$i] = $prifixProduct[$i] * $suffixProduct;
+            $suffixProduct  = $suffixProduct * $nums[$i];
+           
+        }
+        return $prifixProduct;
+
+
+    }
+}

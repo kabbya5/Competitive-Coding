@@ -1,0 +1,29 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer
+     */
+    function maxProduct($nums) {
+        $ans = $nums[0];
+
+        $min =$max = 1;
+
+        for($i =0;$i<count($nums);$i++){
+            if($nums[$i] == 0){
+                $min = 1;
+                $max = 1;
+                $ans = max([$ans,$nums[$i]]);
+                continue;
+            }
+
+            $tmp = $min;
+            $min = min([$nums[$i],min([$nums[$i] * $min, $nums[$i] * $max])]);
+
+            $max = max([$nums[$i], max([$nums[$i] * $tmp,$nums[$i] * $max])]);
+            $ans = max([$ans,$max]);
+        }
+
+        return $ans;
+    }
+}

@@ -1,0 +1,43 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer[][]
+     */
+    function threeSum($nums) {
+        sort($nums);
+
+        $list = [];
+
+        for($i =0;$i<count($nums) -2;$i++){
+            if($i == 0 || $nums[$i] != $nums[$i -1]){
+                $left = $i + 1;
+                $right = count($nums) - 1;
+                $target = 0 - $nums[$i];
+                while($left < $right){
+                    if($nums[$left] + $nums[$right] == $target){
+                        array_push($list,[$nums[$i],$nums[$left],$nums[$right]]);
+                        while(($left < count($nums) -1) && $nums[$left] == $nums[$left+1]){
+                            $left++;
+                        } 
+                        while($right > 0 && $nums[$right] == $nums[$right-1]) {
+                            $right--;
+                        }
+                        
+                        $left++;
+                        $right--;
+                        
+                    }elseif($nums[$left] + $nums[$right] < $target){
+                        $left++;
+                    }else{
+                        $right -= 1;
+                    }
+                    
+                }
+                 
+            }
+        }
+
+        return $list;
+    }
+}

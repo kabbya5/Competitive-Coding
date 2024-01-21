@@ -1,0 +1,27 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @param Integer $val
+     * @return Integer
+     */
+    function removeElement(&$nums, $val) {
+            $left = 0;
+            $right = count($nums) - 1;
+
+            while($left <= $right){
+                if($nums[$left] == $val){
+                    $x = $nums[$left];
+                    $nums[$left] = $nums[$right];
+                    $nums[$right] = $x;
+                    $right-- ;
+                }else{
+                     $left ++;
+                }
+            }
+
+            return $left;
+
+
+    }
+}

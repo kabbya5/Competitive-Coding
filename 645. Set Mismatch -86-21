@@ -1,0 +1,30 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer[]
+     */
+    function findErrorNums($nums) {
+        $n = count($nums);
+        $duplicate = 0;
+        
+        for ($i = 0; $i < $n; $i++) {
+            $index = abs($nums[$i]) - 1;
+            if ($nums[$index] < 0) {
+                $duplicate = abs($nums[$i]);
+            } else {
+                $nums[$index] *= -1;
+            }
+        }
+        
+        
+        for ($i = 0; $i < $n; $i++) {
+            if ($nums[$i] > 0) {
+                $missing = $i + 1;
+                break;
+            }
+        }
+        
+        return [$duplicate, $missing];
+    }
+}

@@ -1,0 +1,29 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer
+     */
+    function majorityElement($nums) {
+        $list = [];
+        $max = 0;
+        $el = 0;
+
+        for($i=0;$i<count($nums);$i++){
+            if(array_key_exists($nums[$i],$list)){
+                $list[$nums[$i]] = $list[$nums[$i]] + 1;
+            }else{
+                $list[$nums[$i]] = 1;
+            }
+        }
+
+        foreach($list as $key => $value){
+            if($value > $max){
+                $max = $value;
+                $el = $key;
+            }
+        }
+        return $el;
+
+    }
+}

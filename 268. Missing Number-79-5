@@ -1,0 +1,15 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer
+     */
+    function missingNumber($nums) {
+        $missing = count($nums);
+
+        for($i = 0; $i < count($nums); $i++){
+            $missing ^= $nums[$i] ^ $i;
+        }
+        return $missing;
+    }
+}

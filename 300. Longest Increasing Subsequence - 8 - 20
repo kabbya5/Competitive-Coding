@@ -1,0 +1,28 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer
+     */
+    function lengthOfLIS($nums) {
+        $n = count($nums);
+        if($n == 1) return 1;
+        $ans = 0;
+        $dp = [1];
+
+        for($i = 1; $i < $n; $i++){
+            $len = 0;
+
+            for($j = 0; $j < $i; $j++){
+                if($nums[$j] < $nums[$i]){
+                    $len = max([$len,$dp[$j]]);
+                }
+            }
+            $dp[$i] = 1 + $len;
+            $ans = max([$ans, $dp[$i]]);
+        }
+
+        return $ans;
+
+    }
+}

@@ -1,0 +1,19 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @param Integer $k
+     * @return Integer[][]
+     */
+    function divideArray($nums, $k) {
+        $ans = [];
+        sort($nums);
+        for($i = 0; $i < count($nums); $i+=3){
+            if($nums[$i+2] - $nums[$i] > $k) return [];
+
+            array_push($ans,[$nums[$i],$nums[$i+1],$nums[$i+2]]);
+        }
+
+        return $ans;
+    }
+}

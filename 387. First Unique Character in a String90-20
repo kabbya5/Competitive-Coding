@@ -1,0 +1,22 @@
+    function firstUniqChar($s) {
+        $ans = -1;
+        $list = [];
+
+        for($i = 0; $i < strlen($s); $i++){
+            if(array_key_exists($s[$i],$list)){
+                $list[$s[$i]] = - 1;
+            }
+            else{
+                $list[$s[$i]] = $i;
+            }
+        }
+
+        foreach($list as $key => $s){
+            if($s >= 0){
+            return $s;
+            }
+        }
+
+        return $ans;
+    }
+}

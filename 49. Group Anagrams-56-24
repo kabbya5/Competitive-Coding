@@ -1,0 +1,24 @@
+class Solution {
+
+    /**
+     * @param String[] $strs
+     * @return String[][]
+     */
+    function groupAnagrams($strs) {
+        $list = [];
+
+        for($i = 0; $i< count($strs); $i++){
+            $stringParts = str_split($strs[$i]);
+            sort($stringParts);
+            $index = implode($stringParts);
+
+            if(array_key_exists($index,$list)){
+                array_push($list[$index], $strs[$i]);
+            }else{
+                $list[$index] = [$strs[$i]];
+            }
+        }
+
+        return $list;
+    }
+}

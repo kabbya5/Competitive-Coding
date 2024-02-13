@@ -1,0 +1,21 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer
+     */
+    function rob($nums) {
+        if(count($nums) == 1) return $nums[0];
+        $prev1 = $nums[0];
+        $prev2 = max([$nums[0], $nums[1]]);
+
+        for($i = 2; $i < count($nums); $i++){
+            $curr = max([$nums[$i] + $prev1, $prev2]);
+            $prev1 = $prev2;
+            $prev2 = $curr;
+        }
+        return $prev2;
+    }
+
+    
+}

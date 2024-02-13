@@ -1,0 +1,17 @@
+class Solution {
+
+    /**
+     * @param String[] $words
+     * @return String
+     */
+    function firstPalindrome($words) {
+        for($i = 0; $i < count($words); $i++){
+            $rev = strrev($words[$i]);
+            if($rev == $words[$i]){
+                return $words[$i];
+            }
+        }
+
+        return "";
+    }
+}

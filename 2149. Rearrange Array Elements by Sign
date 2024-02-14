@@ -23,3 +23,28 @@ class Solution {
         return $ans;
     }
 }
+
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer[]
+     */
+    function rearrangeArray($nums) {
+        $ans = array_fill(0,count($nums),0);
+        $pos = 0; 
+        $neg = 1; 
+
+        for($i = 0; $i < count($nums); $i++){
+            if($nums[$i] < 0){
+                $ans[$neg] = $nums[$i];
+                $neg += 2;
+            }else{
+                $ans[$pos] = $nums[$i];
+                $pos += 2;
+            }
+        }
+
+        return $ans;
+    }
+}

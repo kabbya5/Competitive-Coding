@@ -1,0 +1,25 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer[]
+     */
+    function rearrangeArray($nums) {
+        $ans = [];
+        $pos = 0; 
+        $neg = 1; 
+
+        for($i = 0; $i < count($nums); $i++){
+            if($nums[$i] < 0){
+                $ans[$neg] = $nums[$i];
+                $neg += 2;
+            }else{
+                $ans[$pos] = $nums[$i];
+                $pos += 2;
+            }
+        }
+
+        ksort($ans);
+        return $ans;
+    }
+}

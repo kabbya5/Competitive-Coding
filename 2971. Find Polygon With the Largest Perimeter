@@ -1,0 +1,23 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer
+     */
+    function largestPerimeter($nums) {
+        sort($nums);
+        $tot = array_sum($nums);
+        $cur_sum = 0;
+
+        for($i = count($nums) - 1; $i >= 0; $i--){
+            $cur_sum += $nums[$i];
+            $rem = $tot - $cur_sum;
+
+            if($rem > $nums[$i]){
+                return $rem + $nums[$i];
+            }
+        }
+
+        return  - 1;
+    }
+}

@@ -1,0 +1,23 @@
+class Solution {
+
+    /**
+     * @param Integer[] $arr
+     * @param Integer $k
+     * @return Integer
+     */
+    function findLeastNumOfUniqueInts($arr, $k) {
+        $cnt = array_count_values($arr);
+        $values = array_values($cnt);
+        sort($values);
+
+        for($i = 0; $i < count($values); $i++){
+            $k -= $values[$i];
+
+            if($k < 0){
+                return count($cnt) - $i;
+            }
+        }
+
+        return 0;
+    }
+}

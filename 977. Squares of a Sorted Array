@@ -1,0 +1,16 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer[]
+     */
+    function sortedSquares($nums) {
+        $dp = [0];
+        for($i = 0; $i < count($nums); $i++){
+            $dp[$i] = pow($nums[$i],2);
+        }
+
+        sort($dp);
+        return $dp;
+    }
+}

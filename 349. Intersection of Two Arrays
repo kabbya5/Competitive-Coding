@@ -1,0 +1,24 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums1
+     * @param Integer[] $nums2
+     * @return Integer[]
+     */
+    function intersection($nums1, $nums2) {
+        $dp = [];
+        $ans = [];
+        for($i=0;$i<count($nums1);$i++){
+            $dp[$nums1[$i]] = $nums1[$i];
+        } 
+
+        for($j=0; $j < count($nums2); $j++){
+            if(array_key_exists($nums2[$j],$dp)){
+                array_push($ans,$nums2[$j]);
+            }
+        } 
+
+        return array_unique($ans);
+
+    }
+}

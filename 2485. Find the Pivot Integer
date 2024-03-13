@@ -1,0 +1,15 @@
+class Solution {
+
+    /**
+     * @param Integer $n
+     * @return Integer
+     */
+    function pivotInteger($n) {
+        $y = $n * ($n + 1) / 2;
+        $x = intval(sqrt($y));
+        if($x*$x == $y){
+            return $x;
+        } 
+        return -1;
+    }
+}

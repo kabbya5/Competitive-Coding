@@ -1,0 +1,25 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @param Integer $goal
+     * @return Integer
+     */
+    function numSubarraysWithSum($nums, $goal) {
+        $ans = 0;
+        $prefix = 0;
+        $count = array(0 => 1);
+
+        foreach ($nums as $num) {
+            $prefix += $num;
+            $ans += $count[$prefix - $goal] ?? 0;
+            if (!isset($count[$prefix])) {
+                $count[$prefix] = 1;
+            } else {
+                $count[$prefix]++;
+            }
+        }
+
+        return $ans;
+    }
+}

@@ -1,0 +1,30 @@
+class Solution {
+
+    /**
+     * @param Integer $m
+     * @param Integer $n
+     * @return Integer
+     */
+    function uniquePaths($m, $n) {
+        $grid = [];
+        $grid[0][0] = 1;
+
+        for($i = 1; $i < $n; $i++){
+            $grid[0][$i] = 1;
+        }
+
+        for($i = 1; $i < $m; $i++){
+            $grid[$i][0] = 1;
+        }
+
+        for($r = 1; $r < count($grid); $r++){
+            for($c = 1; $c < count($grid[0]); $c++){
+                $top = $grid[$r-1][$c];
+                $left = $grid[$r][$c-1];
+                $grid[$r][$c] = $top + $left;
+            }
+        }
+
+        return $grid[$m-1] [$n-1];
+    }
+}

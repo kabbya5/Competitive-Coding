@@ -1,0 +1,24 @@
+class Solution {
+
+    /**
+     * @param Integer[][] $points
+     * @return Integer
+     */
+    function findMinArrowShots($points) {
+        $ans = count($points);
+        sort($points);
+        $pre = $points[0];
+
+        for($i = 1; $i < count($points); $i++){
+            $cur = $points[$i];
+            if($cur[0] <= $pre[1]){
+                $pre = [$cur[0],min($cur[1],$pre[1])];
+                $ans -= 1;
+            }else{
+                $pre = $cur;
+            }
+        }
+
+        return $ans;
+    }
+}

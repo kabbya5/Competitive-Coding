@@ -1,0 +1,44 @@
+/**
+ * Definition for a singly-linked list.
+ * class ListNode {
+ *     public $val = 0;
+ *     public $next = null;
+ *     function __construct($val = 0, $next = null) {
+ *         $this->val = $val;
+ *         $this->next = $next;
+ *     }
+ * }
+ */
+class Solution {
+
+    /**
+     * @param ListNode $list1
+     * @param Integer $a
+     * @param Integer $b
+     * @param ListNode $list2
+     * @return ListNode
+     */
+    function mergeInBetween($list1, $a, $b, $list2) {
+        $head = null;
+        $last = null;
+        $i = 1;
+        $t = $list1;
+        while ($t != null) {
+            if ($i == $a) {
+                $head = $t;
+            }
+            if ($i == $b + 1) {
+                $last = $t->next;
+                break;
+            }
+            $t = $t->next;
+            $i++;
+        }
+        $head->next = $list2;
+        while ($head->next != null) {
+            $head = $head->next;
+        }
+        $head->next = $last;
+        return $list1;
+    }
+}

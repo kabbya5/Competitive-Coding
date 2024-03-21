@@ -1,0 +1,20 @@
+ */
+class Solution {
+
+    /**
+     * @param ListNode $head
+     * @return ListNode
+     */
+    function reverseList($head) {
+        $prev = null;
+        $current = $head;
+        while($current !== null){
+            $nextNode = $current->next;
+            $current->next = $prev;
+            $prev = $current;
+            $current = $nextNode;
+        }
+
+        return $prev;
+    }
+}

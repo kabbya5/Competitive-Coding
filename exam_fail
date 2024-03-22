@@ -1,0 +1,49 @@
+//One can design a solution based on explode()
+	//but the easiest way is to use pathinfo
+	return pathinfo( $filepath, PATHINFO_EXTENSION );
+
+
+ <?php
+
+class First {
+}
+
+class Second {
+
+}
+
+class Third extends Second {
+
+}
+
+class Fourth {
+
+}
+
+function checkObject( $obj ) {
+    //----------DO NOT MODIFY CODE ABOVE THIS ROW, IT WILL ANYWAY BE RESET BEFORE EXECUTION----------
+
+    //----------DO NOT MODIFY CODE BELOW THIS ROW, IT WILL ANYWAY BE RESET BEFORE EXECUTION----------
+}
+if ( is_object( $obj ) && ( $obj instanceof Second || $obj instanceOf First ) ) {
+        return true;
+    }
+    return false;
+?>
+
+
+$wrd_1 = strtolower($wrd_1);
+	$wrd_2 = strtolower($wrd_2);
+	for($iter=0; $iter<strlen($wrd_1); $iter++) {
+		$char = substr($wrd_1, $iter, 1);
+		if (substr_count($wrd_1,$char)!=substr_count($wrd_2,$char)) {
+			return false;
+		}
+	}
+	for($iter=0; $iter<strlen($wrd_2); $iter++) {
+		$char = substr($wrd_2, $iter, 1);
+		if (substr_count($wrd_1, $char) != substr_count($wrd_2, $char)) {
+			return false;
+		}
+	}
+	return true;

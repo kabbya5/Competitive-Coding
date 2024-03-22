@@ -1,0 +1,48 @@
+/**
+ * Definition for a singly-linked list.
+ * class ListNode {
+ *     public $val = 0;
+ *     public $next = null;
+ *     function __construct($val = 0, $next = null) {
+ *         $this->val = $val;
+ *         $this->next = $next;
+ *     }
+ * }
+ */
+class Solution {
+
+    /**
+     * @param ListNode $head
+     * @return Boolean
+     */
+    function isPalindrome($head) {
+        $curr = $head;
+        $prev = $head;
+
+        while ($curr && $curr->next) {
+            $curr = $curr->next->next;
+            $prev = $prev->next;
+        }
+
+        $next = null;
+        while ($prev != null) {
+            $tmp = $prev->next;
+            $prev->next = $next;
+            $next = $prev;
+            $prev = $tmp;
+        }
+
+        $left = $head;
+        $right = $next;
+
+        while ($right != null) {
+            if ($left->val != $right->val) {
+                return false;
+            }
+            $left = $left->next;
+            $right = $right->next;
+        }
+
+        return true;
+    }
+}

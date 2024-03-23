@@ -1,0 +1,56 @@
+/**
+ * Definition for a singly-linked list.
+ * class ListNode {
+ *     public $val = 0;
+ *     public $next = null;
+ *     function __construct($val = 0, $next = null) {
+ *         $this->val = $val;
+ *         $this->next = $next;
+ *     }
+ * }
+ */
+class Solution {
+
+    /**
+     * @param ListNode $head
+     * @return NULL
+     */
+    function reorderList($head) {
+         if ($head == null || $head->next == null) {
+            return;
+        }
+
+        // Find the middle of the linked list
+        $slow = $head;
+        $fast = $head;
+        while ($fast->next != null && $fast->next->next != null) {
+            $slow = $slow->next;
+            $fast = $fast->next->next;
+        }
+
+        // Reverse the second half of the linked list
+        $prev = null;
+        $curr = $slow->next;
+        while ($curr != null) {
+            $nextTemp = $curr->next;
+            $curr->next = $prev;
+            $prev = $curr;
+            $curr = $nextTemp;
+        }
+        $slow->next = null; // Break the link between first and second halves
+
+        // Merge the first half and the reversed second half
+        $first = $head;
+        $second = $prev;
+        while ($second != null) {
+            $temp1 = $first->next;
+            $temp2 = $second->next;
+
+            $first->next = $second;
+            $second->next = $temp1;
+
+            $first = $temp1;
+            $second = $temp2;
+        }
+    }
+}

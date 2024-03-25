@@ -1,0 +1,21 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer[]
+     */
+    function findDuplicates($nums) {
+        $map = [];
+        $ans = [];
+
+        for($i = 0; $i < count($nums); $i++){
+            if(array_key_exists($nums[$i],$map)){
+                $ans[$nums[$i]] = $nums[$i]; 
+            }else{
+                $map[$nums[$i]] = $nums[$i];
+            }
+        }
+
+        return $ans;
+    }
+}

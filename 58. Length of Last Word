@@ -1,0 +1,4 @@
+function lengthOfLastWord($s) {
+        $words = str_word_count($s, 1);
+        return strlen(end($words));
+    }

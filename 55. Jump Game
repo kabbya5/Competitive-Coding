@@ -1,0 +1,17 @@
+<?php
+	function canJump($nums) {
+        $reachable = 0;
+
+        for($i = 0; $i < count($nums); $i++){
+            $reachable = max($reachable, $i + $nums[$i]);
+            echo ' r '. $reachable;
+            if($reachable >= count($nums)-1){
+                return true;
+            }
+        }
+        return false;
+
+    }
+    
+    echo(canJump([3,2,1,0,4]));
+?>

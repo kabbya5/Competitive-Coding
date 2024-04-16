@@ -1,0 +1,25 @@
+class Solution {
+
+    /**
+     * @param String $s
+     * @return Integer
+     */
+    function lengthOfLongestSubstring($s) {
+        $ans = 0;
+        $left = 0;
+        $list = [];
+        for($right = 0; $right < strlen($s); $right++){
+            $ch = $s[$right];
+            if(array_key_exists($ch,$list)){
+                $left = max($left,$list[$ch] + 1);
+                $list[$ch] = $right;
+            }else{
+                $list[$ch] = $right;
+            }
+
+            $ans = max($ans, $right - $left + 1);
+        }
+
+        return $ans;
+    }
+}

@@ -1,0 +1,39 @@
+<?php
+	function minWindow($s, $t) {
+      $count = array_count_values(str_split($t));
+    $required = strlen($t);
+    $bestLeft = -1;
+    $minLength = strlen($s) + 1;
+
+    $l = 0;
+    for ($r = 0; $r < strlen($s); $r++) {
+      $c = $s[$r];
+      if (array_key_exists($c, $count)) {
+        $count[$c]--;
+        if ($count[$c] >= 0) {
+          $required--;
+        }
+      }
+      while ($required == 0) {
+        if ($r - $l + 1 < $minLength) {
+          $bestLeft = $l;
+          $minLength = $r - $l + 1;
+        }
+        if (array_key_exists($s[$l], $count)) {
+          $count[$s[$l]]++;
+          if ($count[$s[$l]] > 0) {
+            $required++;
+          }
+        }
+        $l++;
+      }
+    }
+
+    return ($bestLeft == -1) ? '' : substr($s, $bestLeft, $minLength);
+  }
+  
+  $s = "a";
+  $t = "b";
+  
+  echo minWindow($s,$t);
+?>

@@ -1,0 +1,30 @@
+class Solution {
+
+    /**
+     * @param String $s
+     * @return Boolean
+     */
+    function isValid($s) {
+        $map = [ 
+            ')' => '(',
+            '}' => '{',
+            ']' => '[',
+        ];
+
+        $stack = [];
+
+        for ($i = 0; $i < strlen($s); $i++) {
+            $curr = $s[$i];
+            if (array_key_exists($curr, $map)) {
+                $pop = count($stack) != 0 ? array_pop($stack) : '#';
+                if ($pop != $map[$curr]) {
+                    return false;
+                }
+            } else {
+                array_push($stack, $curr);
+            }
+        }
+
+        return empty($stack) ? true : false;
+    }
+}

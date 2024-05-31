@@ -1,0 +1,23 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return Integer[]
+     */
+    function singleNumber($nums) {
+        $xors = array_reduce($nums, function($carry, $num) {
+            return $carry ^ $num;
+        }, 0);
+        $lowbit = $xors & -$xors;
+        $ans = [0, 0];
+
+        foreach ($nums as $num) {
+            if ($num & $lowbit) {
+                $ans[0] ^= $num;
+            } else {
+                $ans[1] ^= $num;
+            }
+        }
+        return $ans;
+    }
+}

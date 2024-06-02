@@ -1,0 +1,25 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @param Integer $target
+     * @return Integer[]
+     */
+    function searchRange($nums, $target) {
+        $f = -1;
+        $l = -1;
+
+        for($i = 0; $i < count($nums); $i++){
+            if($nums[$i] == $target){
+                if($f == -1){
+                    $f = $i;
+                    $l = $i;
+                }else{
+                    $l = $i;
+                }
+            }
+        }
+
+        return [$f,$l];
+    }
+}

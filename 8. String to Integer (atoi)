@@ -1,0 +1,12 @@
+class Solution {
+
+    /**
+     * @param Integer $x
+     * @return Boolean
+     */
+    function isPalindrome($x) {
+        $x = (string) $x;
+        $x1 = strrev($x);
+        return $x === $x1 ? true : false;
+        }
+}

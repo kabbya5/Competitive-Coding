@@ -1,0 +1,26 @@
+class Solution {
+
+    /**
+     * @param String $s
+     * @return Integer
+     */
+    function longestPalindrome($s) {
+        $ans = 0;
+        $count = array_count_values(str_split($s));
+        print_r($count);
+        
+        foreach($count as $c){
+        $ans += ($c % 2 == 0) ? $c : $c - 1;
+        }
+        
+        $hasOddCount = false;
+        foreach ($count as $c) {
+        if ($c % 2 == 1) {
+            $hasOddCount = true;
+            break;
+        }
+        }
+        
+        return $ans + ($hasOddCount ? 1 : 0);
+    }
+}

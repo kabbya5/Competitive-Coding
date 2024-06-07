@@ -1,0 +1,34 @@
+class Solution {
+
+    /**
+     * @param String[] $dictionary
+     * @param String $sentence
+     * @return String
+     */
+    function replaceWords($dictionary, $sentence) {
+        $words = explode(" ", $sentence); 
+
+        $rootWords = array_flip($dictionary);
+        
+            print_r($rootWords);
+
+        for ($i = 0; $i < count($words); $i++) {
+            $word = $words[$i];
+            $shortestRoot = ""; 
+
+            for ($j = 1; $j <= strlen($word); $j++) {
+            $prefix = substr($word, 0, $j);
+            if (isset($rootWords[$prefix]) && (strlen($prefix) < strlen($shortestRoot) || empty($shortestRoot))) {
+                $shortestRoot = $prefix;
+            }
+            }
+
+            if (!empty($shortestRoot)) {
+            $words[$i] = $shortestRoot;
+            }
+        }
+
+        return implode(" ", $words);
+
+    }
+}

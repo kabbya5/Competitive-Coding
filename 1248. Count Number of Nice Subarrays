@@ -1,0 +1,30 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @param Integer $k
+     * @return Integer
+     */
+    function numberOfSubarrays($nums, $k) {
+        $count_map = array(0 => 1);
+        $count_odd = 0;
+        $result = 0;
+
+        foreach ($nums as $num) {
+            if ($num % 2 != 0) {
+                $count_odd += 1;
+            }
+
+            if (array_key_exists($count_odd - $k, $count_map)) {
+                $result += $count_map[$count_odd - $k];
+            }
+            if (array_key_exists($count_odd, $count_map)) {
+                $count_map[$count_odd] += 1;
+            } else {
+                $count_map[$count_odd] = 1;
+            }
+        }
+
+        return $result;
+    }
+}

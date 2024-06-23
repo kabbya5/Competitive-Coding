@@ -1,0 +1,41 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @param Integer $limit
+     * @return Integer
+     */
+    function longestSubarray($nums, $limit) {
+        $maxDeque = new SplDoublyLinkedList();
+        $minDeque = new SplDoublyLinkedList();
+        $left = 0;
+        $maxLength = 0;
+
+        for ($right = 0; $right < count($nums); $right++) {
+            while (!$maxDeque->isEmpty() && $nums[$maxDeque->top()] <= $nums[$right]) {
+                $maxDeque->pop();
+            }
+            
+            $maxDeque->push($right);
+
+            while (!$minDeque->isEmpty() && $nums[$minDeque->top()] >= $nums[$right]) {
+                $minDeque->pop();
+            }
+            
+            $minDeque->push($right);
+
+            while ($nums[$maxDeque->bottom()] - $nums[$minDeque->bottom()] > $limit) {
+                $left++;
+                if ($maxDeque->bottom() < $left) {
+                    $maxDeque->shift();
+                }
+                if ($minDeque->bottom() < $left) {
+                    $minDeque->shift();
+                }
+            }
+            $maxLength = max($maxLength, $right - $left + 1);
+        }
+
+        return $maxLength;
+    }
+}

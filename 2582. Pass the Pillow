@@ -1,0 +1,19 @@
+class Solution {
+
+    /**
+     * @param Integer $n
+     * @param Integer $time
+     * @return Integer
+     */
+    function passThePillow($n, $time) {
+        $time %= ($n - 1) * 2;
+
+        if($time < $n){
+            return $time + 1;
+        }
+
+        $res =  $n - ($time - ($n - 1));
+        return $res;
+        
+    }
+}

@@ -1,0 +1,22 @@
+class Solution {
+
+    /**
+     * @param Integer $numBottles
+     * @param Integer $numExchange
+     * @return Integer
+     */
+    function numWaterBottles($numBottles, $numExchange) {
+        $total_drunk = 0;
+        $empty_bottles = 0;
+
+        while($numBottles > 0){
+            $total_drunk += $numBottles;
+            $empty_bottles += $numBottles;
+
+            $numBottles = intdiv($empty_bottles, $numExchange);
+            $empty_bottles = $empty_bottles % $numExchange;
+        }
+
+        return $total_drunk;
+    }
+}

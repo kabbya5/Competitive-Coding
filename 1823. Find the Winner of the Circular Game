@@ -1,0 +1,19 @@
+class Solution {
+
+    /**
+     * @param Integer $n
+     * @param Integer $k
+     * @return Integer
+     */
+    function findTheWinner($n, $k) {
+        return $this->josephus($n,$k) + 1;
+    }
+
+    private function josephus($n,$k){
+        if($n == 0){
+            return 0;
+        }else{
+            return ($this->josephus($n-1, $k) + $k) % $n;
+        }
+    }
+}

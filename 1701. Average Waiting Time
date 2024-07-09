@@ -1,0 +1,28 @@
+class Solution {
+
+    /**
+     * @param Integer[][] $customers
+     * @return Float
+     */
+    function averageWaitingTime($customers) {
+        $n = count($customers);
+
+        $currentTime = 0;
+        $totalWaitingTime = 0;
+
+        foreach($customers as $customer){
+            $arrivalTime = $customer[0];
+            $prepTime = $customer[1];
+
+            if($currentTime < $arrivalTime){
+                $currentTime = $arrivalTime;
+            }
+
+            $currentTime += $prepTime;
+            $waitingTime = $currentTime - $arrivalTime;
+            $totalWaitingTime += $waitingTime;
+        }
+
+        return $totalWaitingTime / $n;
+    }
+}

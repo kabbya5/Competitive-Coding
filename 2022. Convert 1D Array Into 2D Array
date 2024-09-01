@@ -1,0 +1,19 @@
+class Solution {
+
+    /**
+     * @param Integer[] $original
+     * @param Integer $m
+     * @param Integer $n
+     * @return Integer[][]
+     */
+    function construct2DArray($original, $m, $n) {
+        if(count($original) != $m * $n){
+            return [];
+        }
+        $result = [];
+        for ($i = 0; $i < $m; $i++){
+            $result[] = array_slice($original,$i * $n, $n);
+        }
+        return $result;
+    }
+}

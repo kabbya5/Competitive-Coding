@@ -1,0 +1,28 @@
+class Solution {
+
+    /**
+     * @param String $ransomNote
+     * @param String $magazine
+     * @return Boolean
+     */
+    function canConstruct($ransomNote, $magazine) {
+        $magazine_count = [];
+        for ($i = 0; $i < strlen($magazine); $i++) {
+            $char = $magazine[$i];
+            if (isset($magazine_count[$char])) {
+                $magazine_count[$char]++;
+            } else {
+                $magazine_count[$char] = 1;
+            }
+        }
+        for ($i = 0; $i < strlen($ransomNote); $i++) {
+            $char = $ransomNote[$i];
+            if (!isset($magazine_count[$char]) || $magazine_count[$char] == 0) {
+                return false;
+            }
+            $magazine_count[$char]--;
+        }
+
+        return true;
+    }
+}

@@ -1,0 +1,45 @@
+/**
+ * Definition for a singly-linked list.
+ * class ListNode {
+ *     public $val = 0;
+ *     public $next = null;
+ *     function __construct($val = 0, $next = null) {
+ *         $this->val = $val;
+ *         $this->next = $next;
+ *     }
+ * }
+ */
+class Solution {
+
+    /**
+     * @param Integer $m
+     * @param Integer $n
+     * @param ListNode $head
+     * @return Integer[][]
+     */
+    function spiralMatrix($m, $n, $head) {
+        $matrix = array_fill(0,$m,array_fill(0,$n,-1));
+        $directions = [[0,1],[1,0],[0,-1],[-1,0]];
+        $x = 0;
+        $y = 0;
+        $direction_idx = 0;
+        $current = $head;
+        for($i = 0; $i < $m * $n; $i++){
+            $matrix[$x][$y] = $current ? $current->val : -1;
+            $current = $current ? $current->next : null;
+            $x_next = $x + $directions[$direction_idx][0];
+            $y_next = $y + $directions[$direction_idx][1];
+
+            if($x_next < 0 || $x_next >= $m || $y_next < 0 || $y_next >= $n ||$matrix[$x_next][$y_next] != -1){
+                $direction_idx = ($direction_idx + 1) % 4;
+                $x_next = $x + $directions[$direction_idx][0];
+                $y_next = $y + $directions[$direction_idx][1];
+            }
+
+            $x = $x_next;
+            $y = $y_next;
+        }
+
+        return $matrix;
+    }
+}

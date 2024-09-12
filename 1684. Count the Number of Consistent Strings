@@ -1,0 +1,23 @@
+class Solution {
+
+    /**
+     * @param String $allowed
+     * @param String[] $words
+     * @return Integer
+     */
+    function countConsistentStrings($allowed, $words) {
+        $allowed_set = array_flip(str_split($allowed));
+        $count = 0;
+
+        foreach($words as $word){
+            $is_contain = true;
+            foreach(str_split($word) as $str){
+                if(!isset($allowed_set[$str])) $is_contain = false;
+            }
+
+            if($is_contain == true) $count += 1;
+        }
+
+        return $count;
+    }
+}

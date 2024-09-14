@@ -1,0 +1,22 @@
+class Solution {
+
+    /**
+     * @param Integer[] $arr
+     * @param Integer[][] $queries
+     * @return Integer[]
+     */
+    function xorQueries($arr, $queries) {
+        $res = [];
+        $xors = [];
+        for($i = 0; $i < count($arr); $i++){
+            $xors[$i+1] = $xors[$i] ^ $arr[$i];
+        }
+
+        foreach($queries as $query){
+            list($a,$b) = $query;
+            $res[] += $xors[$a] ^ $xors[$b+1];
+        }
+
+        return $res;
+    }
+}

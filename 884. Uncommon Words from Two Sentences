@@ -1,0 +1,25 @@
+class Solution {
+
+    /**
+     * @param String $s1
+     * @param String $s2
+     * @return String[]
+     */
+    function uncommonFromSentences($s1, $s2) {
+        $words1 = explode(' ', $s1);
+        $words2 = explode(' ', $s2);
+        $result = [];
+
+        $words = array_merge($words1, $words2);
+        $words_count =  array_count_values($words);
+
+        foreach($words_count as $word => $count){
+            if($count == 1){
+                $result []= $word;
+            }
+        }
+
+        return $result;
+
+    }
+}

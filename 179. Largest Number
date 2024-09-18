@@ -1,0 +1,20 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @return String
+     */
+    function largestNumber($nums) {
+        $nums_str = array_map('strval', $nums);
+
+        usort($nums_str, function($a, $b){
+            return strcmp($b . $a, $a . $b);
+        });
+
+         if ($nums_str[0] === '0') {
+            return '0';
+        }
+
+        return implode($nums_str);
+    }
+}

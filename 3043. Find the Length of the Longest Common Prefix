@@ -1,0 +1,73 @@
+class TrieNode {
+    public $children = [];  // Holds the children nodes
+    public $isWord = false; // Marks if the node represents the end of a word
+}
+
+class Trie {
+    private $root;
+
+    public function __construct() {
+        $this->root = new TrieNode();  // Initialize the root node
+    }
+
+    // Insert a word into the Trie
+    public function insert($word) {
+        $node = $this->root;
+
+        // Traverse the word and create children nodes as necessary
+        for ($i = 0; $i < strlen($word); $i++) {
+            $c = $word[$i];
+            if (!isset($node->children[$c])) {
+                $node->children[$c] = new TrieNode();
+            }
+            $node = $node->children[$c];
+        }
+        $node->isWord = true;
+    }
+
+    // Search for the longest common prefix of the word in the Trie
+    public function search($word) {
+        $prefixLength = 0;
+        $node = $this->root;
+
+        // Traverse the word and check if each character exists in the Trie
+        for ($i = 0; $i < strlen($word); $i++) {
+            $c = $word[$i];
+            if (!isset($node->children[$c])) {
+                break; // Stop if the character is not found
+            }
+            $node = $node->children[$c];
+            $prefixLength++;  // Increase the length of the common prefix
+        }
+
+        return $prefixLength;  // Return the length of the common prefix
+    }
+}
+
+
+class Solution {
+
+    /**
+     * @param Integer[] $arr1
+     * @param Integer[] $arr2
+     * @return Integer
+     */
+    function longestCommonPrefix($arr1, $arr2) {
+        $trie = new Trie();
+
+        // Insert each number in arr1 into the Trie after converting it to string
+        foreach ($arr1 as $num) {
+            $trie->insert((string)$num);
+        }
+
+        // Find the maximum common prefix length from arr2
+        $maxPrefixLength = 0;
+        foreach ($arr2 as $num) {
+            $maxPrefixLength = max($maxPrefixLength, $trie->search((string)$num));
+        }
+
+        return $maxPrefixLength;
+    }
+        
+    
+}

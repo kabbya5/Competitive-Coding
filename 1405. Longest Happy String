@@ -1,0 +1,51 @@
+function longestDiverseString($a, $b, $c) {
+        $remaing = ['a' => $a, 'b' => $b, 'c' => $c];
+        $pq = new SplPriorityQueue();
+        $result = '';
+        $last_char = '';
+
+        foreach($remaing as $char => $count){
+            if($count > 0){
+                $pq->insert($char, $count);
+            }
+        }
+
+        while (!$pq->isEmpty()) {
+            $char = $pq->extract();
+            $count = $remaing[$char];
+
+            if(!empty($last_char) && $last_char == $char){
+                if($pq->isEmpty()){
+                    break;
+                }
+
+                $next_char = $pq->extract();
+                $next_count = $remaing[$next_char];
+
+                $result .= $next_char;
+                $remaing[$next_char]--;
+
+                if ($next_count > 1) {
+                    $pq->insert($next_char, $next_count - 1);
+                }
+
+                $pq->insert($char, $count);
+                $last_char = $next_char;
+            }else{
+                $add_count = min(2, $count); 
+                $result .= str_repeat($char, $add_count);
+                $remaing[$char] -= $add_count;
+
+                if ($remaing[$char] > 0) {
+                    $pq->insert($char, $remaing[$char]);
+                }
+
+                $last_char = $char;
+            }
+
+           
+        }
+
+        return $result;
+    }
+}

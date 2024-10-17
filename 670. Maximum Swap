@@ -1,0 +1,29 @@
+class Solution {
+
+    /**
+     * @param Integer $num
+     * @return Integer
+     */
+    function maximumSwap($num) {
+        $digits = str_split(strval($num)); 
+        $last = [];
+
+        foreach ($digits as $i => $d) {
+            $last[$d] = $i; 
+        }
+        
+        for ($i = 0; $i < count($digits); $i++) {
+            for ($bigger = 9; $bigger > $digits[$i]; $bigger--) {   
+                if (isset($last[$bigger]) && $last[$bigger] > $i) {
+                    $temp = $digits[$i];
+                    $digits[$i] = $digits[$last[$bigger]];
+                    $digits[$last[$bigger]] = $temp;
+
+                    return intval(implode('', $digits));
+                }
+            }
+        }
+
+        return $num;
+    }
+}

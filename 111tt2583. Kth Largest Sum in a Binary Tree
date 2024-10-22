@@ -1,0 +1,59 @@
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     public $val = null;
+ *     public $left = null;
+ *     public $right = null;
+ *     function __construct($val = 0, $left = null, $right = null) {
+ *         $this->val = $val;
+ *         $this->left = $left;
+ *         $this->right = $right;
+ *     }
+ * }
+ */
+class Solution {
+
+    /**
+     * @param TreeNode $root
+     * @param Integer $k
+     * @return Integer
+     */
+    function kthLargestLevelSum($root, $k) {
+        if($root == null){
+            return -1;
+        }
+
+        $queue = new splQueue();
+        $queue->enqueue($root);
+
+        $level_sums = [];
+
+        while(!$queue->isEmpty()){
+            $level_size = $queue->count();
+            $level_sum = 0;
+
+            for($i = 0; $i < $level_size; $i++){
+                $node = $queue->dequeue();
+                $level_sum += $node->val;
+
+                if($node->left !== null){
+                    $queue->enqueue($node->left);
+                }
+
+                if($node->right !== null){
+                    $queue->enqueue($node->right);
+                }
+            }
+
+            $level_sums[] = $level_sum;
+        }
+
+        rsort($level_sums);
+
+        if ($k > count($level_sums)) {
+            return -1;
+        }
+    
+        return $level_sums[$k - 1];
+    }
+}

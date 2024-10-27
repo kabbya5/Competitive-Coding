@@ -1,0 +1,24 @@
+class Solution {
+
+    /**
+     * @param Integer[] $arr
+     * @return Integer[]
+     */
+    function arrayRankTransform($arr) {
+        $shorted_values = array_values(array_unique($arr));
+        sort($shorted_values);
+
+        $rank = [];
+        foreach($shorted_values as $key => $val){
+            $rank[$val] = $key + 1;
+        }
+
+        $result = [];
+
+        foreach($arr as $num){
+            $result[] = $rank[$num];
+        }
+
+        return $result;
+    }
+}

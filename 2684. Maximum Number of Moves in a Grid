@@ -1,0 +1,45 @@
+class Solution {
+
+    /**
+     * @param Integer[][] $grid
+     * @return Integer
+     */
+    function maxMoves($grid) {
+        $m = count($grid);
+        $n = count($grid[0]);
+
+        $memo = array_fill(0, $m, array_fill(0, $n, - 1));
+
+        $directions = [[-1, 1], [0, 1], [1, 1]];
+
+        $result = 0;
+
+        for($i = 0; $i < $m; $i++){
+            $result = max($result, $this->dfs($i, 0, $grid, $m, $n,$memo, $directions));
+        }
+
+        return $result;
+    }
+
+    private function dfs($row, $col, $grid, $m, $n, &$memo, $directions){
+        if($memo[$row][$col] != -1){
+            return $memo[$row][$col];
+        }
+
+        $maxMoves = 0;
+
+        $currentValue = $grid[$row][$col];
+        
+        foreach($directions as [$dr, $dc]){
+            $newRow = $dr + $row;
+            $newCol = $dc + $col;
+
+            if($newRow >= 0 && $newRow < $m && $newCol >= 0 && $newCol < $n && $grid[$newRow][$newCol] > $currentValue){
+                $maxMoves = max($maxMoves, 1 + $this->dfs($newRow, $newCol, $grid, $m, $n, $memo, $directions));
+            }
+        }
+
+        $memo[$row][$col] = $maxMoves;
+        return $maxMoves;
+    }
+}

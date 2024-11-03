@@ -1,0 +1,25 @@
+class Solution {
+
+    /**
+     * @param String $haystack
+     * @param String $needle
+     * @return Integer
+     */
+    function strStr($haystack, $needle) {
+        if($needle == ''){
+            return 0;
+        }
+
+        if($haystack[0] == $needle) return 0;
+        $needle_length = strlen($needle);
+        $haystack_length = strlen($haystack);
+
+        for($i = 0; $i <= $haystack_length - $needle_length; $i++){
+            if(substr($haystack, $i, $needle_length) == $needle){
+                return $i;
+            }
+        }
+
+        return - 1;
+    }
+}

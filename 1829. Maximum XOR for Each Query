@@ -1,0 +1,27 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @param Integer $maximumBit
+     * @return Integer[]
+     */
+    function getMaximumXor($nums, $maximumBit) {
+        $n = count($nums); 
+        $prefix_xor = 0;
+
+        foreach($nums as $num){
+            $prefix_xor ^= $num;
+        }
+
+        $max_xor_val = (1 << $maximumBit) - 1;
+
+        $result = [];
+
+        for($i = $n-1; $i >= 0; $i--){
+            $result[] = $prefix_xor ^ $max_xor_val;
+            $prefix_xor ^= $nums[$i];
+        }
+
+        return $result;
+    }
+}

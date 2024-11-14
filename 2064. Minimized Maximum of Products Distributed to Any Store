@@ -1,0 +1,36 @@
+class Solution {
+
+    /**
+     * @param Integer $n
+     * @param Integer[] $quantities
+     * @return Integer
+     */
+    function minimizedMaximum($n, $quantities) {
+        $left = 1;
+        $right = max($quantities);
+
+        while($left < $right){
+            $mid = (int) (($left + $right) / 2);
+
+            if($this->canDistributeStore($mid, $n, $quantities)){
+                $right = $mid;
+            }else{
+                $left = $mid + 1;
+            }
+        }
+
+        return $left;
+    }
+
+    private function canDistributeStore($mid, $n, $quantities){
+        $totalStoresNeeded = 0;
+        foreach($quantities as $quantity){
+            $totalStoresNeeded += ceil($quantity / $mid);
+            if($totalStoresNeeded > $n){
+                return false;
+            }
+        }
+
+        return $totalStoresNeeded <= $n;
+    }
+}

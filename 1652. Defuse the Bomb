@@ -1,0 +1,31 @@
+class Solution {
+
+    /**
+     * @param Integer[] $code
+     * @param Integer $k
+     * @return Integer[]
+     */
+    function decrypt($code, $k) {
+
+        $n = count($code);
+        $result = array_fill(0, $n, 0);
+
+        if($k == 0){
+            return $result;
+        }
+
+        $start = $k > 0 ? 1 : $k;
+        $end = $k > 0 ? $k : -1;
+
+         for ($i = 0; $i < $n; $i++) {
+            $sum = 0;
+            for ($j = $start; $j <= $end; $j++) {
+                $index = ($i + $j + $n) % $n;
+                $sum += $code[$index];
+            }
+            $result[$i] = $sum;
+        }
+
+        return $result;        
+    }
+}

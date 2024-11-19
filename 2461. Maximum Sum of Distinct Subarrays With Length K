@@ -1,0 +1,54 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @param Integer $k
+     * @return Integer
+     */
+    function maximumSubarraySum($nums, $k){
+        $n = count($nums);
+        $window_sum = 0;  
+        $max_sum = 0;    
+        $distinct = 0;    
+        $seen = [];       
+
+        for ($i = 0; $i < $n; $i++) {
+           
+            $window_sum += $nums[$i];
+
+
+            if (!isset($seen[$nums[$i]])) {
+                $seen[$nums[$i]] = 0;
+            }
+            $seen[$nums[$i]]++;
+
+            
+            if ($seen[$nums[$i]] == 1) {
+                $distinct++;
+            }
+
+            
+            if ($i >= $k) {
+                $left_sum = $nums[$i - $k];
+                $seen[$left_sum]--;
+
+                
+                if ($seen[$left_sum] == 0) {
+                    $distinct--;
+                    unset($seen[$left_sum]); 
+                }
+
+               
+                $window_sum -= $left_sum;
+            }
+
+           
+            if ($i >= $k - 1 && $distinct == $k) {
+                $max_sum = max($max_sum, $window_sum);
+            }
+        }
+
+    return $max_sum;
+        
+    }
+}

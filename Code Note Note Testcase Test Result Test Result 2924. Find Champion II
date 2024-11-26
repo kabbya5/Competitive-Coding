@@ -1,0 +1,28 @@
+class Solution {
+
+    /**
+     * @param Integer $n
+     * @param Integer[][] $edges
+     * @return Integer
+     */
+    function findChampion($n, $edges) {
+        $inDegree = array_fill(0, $n, 0);
+
+        foreach($edges as $edge){
+            $inDegree[$edge[1]]++;
+        }
+
+        $champion = - 1;
+
+        $count = 0;
+
+        foreach($inDegree as $index => $degree){
+            if($degree == 0){
+                $champion = $index;
+                $count++;
+            }
+        }
+
+        return $count === 1 ? $champion : -1;
+    }
+}

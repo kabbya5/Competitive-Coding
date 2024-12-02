@@ -1,0 +1,18 @@
+class Solution {
+
+    /**
+     * @param String $sentence
+     * @param String $searchWord
+     * @return Integer
+     */
+    function isPrefixOfWord($sentence, $searchWord) {
+        $words = explode(' ', $sentence);
+        foreach($words as $key => $str){
+            if(strpos($str, $searchWord) === 0){ 
+                return $key + 1;
+            }
+        }
+
+        return -1;
+    }
+}

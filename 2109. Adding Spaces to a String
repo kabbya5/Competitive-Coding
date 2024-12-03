@@ -1,0 +1,22 @@
+class Solution {
+
+    /**
+     * @param String $s
+     * @param Integer[] $spaces
+     * @return String
+     */
+    function addSpaces($s, $spaces) {
+        $result = [];
+        $prev = 0;
+
+        foreach($spaces as $space){
+            $result[] = substr($s, $prev, $space - $prev);
+            $result[]  = " ";
+            $prev = $space;
+        }
+
+        $result[] = substr($s, $prev);
+
+        return implode('', $result);
+    }
+}

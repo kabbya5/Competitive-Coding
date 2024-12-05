@@ -1,0 +1,40 @@
+class Solution {
+
+    /**
+     * @param String $start
+     * @param String $target
+     * @return Boolean
+     */
+    function canChange($start, $target) {
+        $n = strlen($start);
+    
+    
+        $startNoUnderscore = str_replace('_', '', $start);
+        $targetNoUnderscore = str_replace('_', '', $target);
+        
+        if ($startNoUnderscore !== $targetNoUnderscore) {
+            return false;
+        }
+        
+        $i = $j = 0;
+        
+        while ($i < $n && $j < $n) {
+            while ($i < $n && $start[$i] === '_') $i++;
+            while ($j < $n && $target[$j] === '_') $j++;
+            
+            if ($i === $n && $j === $n) return true;
+            
+            if ($i === $n || $j === $n) return false;
+            
+            if ($start[$i] !== $target[$j]) return false;
+            
+            if ($start[$i] === "L" && $i < $j) return false;
+            if ($start[$i] === 'R' && $i > $j) return false;
+            
+            $i++;
+            $j++;
+        }
+        
+        return true;
+    }
+}

@@ -1,0 +1,28 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @param Integer[][] $queries
+     * @return Boolean[]
+     */
+    function isArraySpecial($nums, $queries) {
+        $ans = [];
+        $id = 0;
+        $parityIds = [0]; 
+
+
+        for ($i = 1; $i < count($nums); $i++) {
+            if ($nums[$i - 1] % 2 === $nums[$i] % 2) {
+                $id++;
+            }
+            $parityIds[] = $id;
+        }
+
+        foreach ($queries as $query) {
+            [$from, $to] = $query;
+            $ans[] = $parityIds[$from] === $parityIds[$to];
+        }
+
+        return $ans;
+    }
+}

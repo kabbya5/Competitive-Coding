@@ -1,0 +1,43 @@
+class Solution {
+
+    /**
+     * @param Integer[] $nums
+     * @param Integer $k
+     * @param Integer $multiplier
+     * @return Integer[]
+     */
+    function getFinalState($nums, $k, $multiplier) {
+        $minHeap = [];
+        foreach ($nums as $i => $num) {
+            $minHeap[] = ['value' => $num, 'index' => $i];
+        }
+        usort($minHeap, function ($a, $b) {
+
+            return $a['value'] === $b['value'] ? $a['index'] <=> $b['index'] : $a['value'] <=> $b['value'];
+        });
+
+
+        for ($op = 0; $op < $k; $op++) {
+ 
+            $current = array_shift($minHeap);
+            $value = $current['value'];
+            $index = $current['index'];
+
+   
+            $newValue = $value * $multiplier;
+
+ 
+            $nums[$index] = $newValue;
+
+
+            $minHeap[] = ['value' => $newValue, 'index' => $index];
+
+     
+            usort($minHeap, function ($a, $b) {
+                return $a['value'] === $b['value'] ? $a['index'] <=> $b['index'] : $a['value'] <=> $b['value'];
+            });
+        }
+
+        return $nums;
+    }
+}

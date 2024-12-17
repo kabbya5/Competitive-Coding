@@ -1,0 +1,51 @@
+class Solution {
+
+    /**
+     * @param String $s
+     * @param Integer $repeatLimit
+     * @return String
+     */
+    function repeatLimitedString($s, $repeatLimit) {
+        $charCount = array_count_values(str_split($s));
+        krsort($charCount); 
+        $result = '';
+    
+        while (true) {
+            $addOne = !empty($result) && $this->shouldAddOne($result, $charCount);
+            $c = $this->getLargestChar($result, $charCount);
+            if ($c === ' ') break;
+
+            $repeats = $addOne ? 1 : min($charCount[$c], $repeatLimit);
+
+            $result .= str_repeat($c, $repeats);
+            $charCount[$c] -= $repeats;
+
+            if ($charCount[$c] <= 0) {
+                unset($charCount[$c]);
+            }
+        }
+
+        return $result;
+    }
+
+    function shouldAddOne($result, $charCount) {
+        for ($i = ord('z'); $i >= ord('a'); $i--) {
+            $c = chr($i);
+            if (isset($charCount[$c]) && $charCount[$c] > 0) {
+                return $result[-1] === $c;
+            }
+        }
+        return false;
+    }
+
+
+    function getLargestChar($result, $charCount) {
+        for ($i = ord('z'); $i >= ord('a'); $i--) {
+            $c = chr($i);
+            if (isset($charCount[$c]) && $charCount[$c] > 0 && (empty($result) || $result[-1] !== $c)) {
+                return $c;
+            }
+        }
+        return ' ';
+        }
+    }

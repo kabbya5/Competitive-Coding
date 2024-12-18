@@ -1,0 +1,22 @@
+class Solution {
+
+    /**
+     * @param Integer[] $prices
+     * @return Integer[]
+     */
+    function finalPrices($prices) {
+        $ans = $prices;
+        $stack = [];
+
+        foreach($prices as $i => $price){
+            while(!empty($stack) & $prices[end($stack)] >= $price){
+                $index = array_pop($stack);
+                $ans[$index] -= $price;
+            }
+            $stack[] = $i;
+        }
+        return $ans;
+    }
+
+    
+}

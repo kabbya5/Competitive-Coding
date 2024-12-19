@@ -1,0 +1,10 @@
+function maxChunksToSorted($arr) {
+        $maxSoFar = 0; $chunks = 0;
+        for ($i = 0; $i < count($arr); $i++) {
+            $maxSoFar = max($maxSoFar, $arr[$i]);
+            if ($maxSoFar === $i) {
+                $chunks++;
+            }
+        }
+        return $chunks;
+    }
